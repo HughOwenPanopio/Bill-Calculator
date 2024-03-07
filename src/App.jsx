@@ -2,14 +2,14 @@ import './App.css'
 import FriendsList from './Components/FriendsList/index'
 import FormAddFriend from './Components/FormAddFriend/index'
 import FormSplitBill from './Components/FormSplitBill/index'
-import Button from './Components/Button/index'
+import SharedButton from './Components/Button/index'
 
 function App() {
   return (
     <>
       <FriendsList />
       <FormAddFriend />
-      <Button />
+      <SharedButton>Add Friend</SharedButton>
       <FormSplitBill />
     </>
   )

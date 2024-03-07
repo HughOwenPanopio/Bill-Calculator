@@ -1,11 +1,16 @@
+import { List } from '@mui/material'
 import Friend from '../Friend'
+import { initialFriends } from '../../data'
 
 function FriendsList() {
   return (
-    <div>
-      FriendsList
-      <Friend />
-    </div>
+    <>
+      <List>
+        {initialFriends.map((friend) => (
+          <Friend friend={friend} key={friend.id} />
+        ))}
+      </List>
+    </>
   )
 }
 

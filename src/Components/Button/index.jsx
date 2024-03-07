@@ -1,5 +1,16 @@
-function Button() {
-  return <div>Button</div>
+import PropTypes from 'prop-types'
+import { GenButton } from './style'
+
+function SharedButton({ children }) {
+  return (
+    <GenButton variant="contained" size="medium">
+      {children}
+    </GenButton>
+  )
 }
 
-export default Button
+SharedButton.propTypes = {
+  children: PropTypes.string,
+}
+
+export default SharedButton
