@@ -10,21 +10,15 @@ import {
   Typography,
 } from '@mui/material'
 import SharedButton from '../Button'
+import PropTypes from 'prop-types'
 
-// function getStyles(name, personName, theme) {
-//   return {
-//     fontWeight:
-//       personName.indexOf(name) === -1
-//         ? theme.typography.fontWeightRegular
-//         : theme.typography.fontWeightMedium,
-//   }
-// }
-
-function FormSplitBill() {
+function FormSplitBill({ selectedFriend }) {
   return (
     <>
       <form style={{ padding: 10 }}>
-        <Typography variant="h6">Split a bill with x</Typography>
+        <Typography variant="h6">
+          Split a bill with {selectedFriend.name}
+        </Typography>
         <Box
           sx={{
             '& > :not(style)': { m: 1, width: '36ch' },
@@ -45,7 +39,7 @@ function FormSplitBill() {
             />
             <TextField
               id="outlined-basic"
-              label="X's Expenses"
+              label={`${selectedFriend.name}'s Expenses`}
               variant="outlined"
               disabled
             />
@@ -60,7 +54,7 @@ function FormSplitBill() {
                 input={<OutlinedInput label="Who Will Pay The Bill?" />}
               >
                 <MenuItem value="user">You</MenuItem>
-                <MenuItem value="friend">x</MenuItem>
+                <MenuItem value="friend">{selectedFriend.name}</MenuItem>
               </Select>
             </FormControl>
 
@@ -70,6 +64,10 @@ function FormSplitBill() {
       </form>
     </>
   )
+}
+
+FormSplitBill.propTypes = {
+  selectedFriend: PropTypes.object,
 }
 
 export default FormSplitBill

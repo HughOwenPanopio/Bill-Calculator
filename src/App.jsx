@@ -19,6 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
   const [newFriend, setNewFriend] = useState(initialFriends)
   const [showAddForm, setShowAddForm] = useState(false)
+  const [selectedFriend, setSelectedFriend] = useState(null)
 
   function handleAddFriend(friend) {
     setNewFriend((newFriend) => [...newFriend, friend])
@@ -28,6 +29,10 @@ function App() {
     setShowAddForm((show) => !show)
   }
 
+  function handleSelection(friend) {
+    setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend))
+  }
+
   return (
     <>
       <Stack
@@ -35,16 +40,25 @@ function App() {
         spacing={{ xs: 1, sm: 2, md: 4 }}
       >
         <Item>
-          <FriendsList friends={newFriend} />
+          <FriendsList
+            friends={newFriend}
+            onSelect={handleSelection}
+            selectedFriend={selectedFriend}
+          />
         </Item>
-        <Item>
-          <FormSplitBill />
-        </Item>
+
+        {selectedFriend && (
+          <Item>
+            <FormSplitBill selectedFriend={selectedFriend} />
+          </Item>
+        )}
+
         {showAddForm && (
           <Item>
             <FormAddFriend onAddFriend={handleAddFriend} />
           </Item>
         )}
+
         <Item>
           <SharedButton onClick={handleShowAddForm}>
             {showAddForm ? 'Close' : 'Add New Friend'}

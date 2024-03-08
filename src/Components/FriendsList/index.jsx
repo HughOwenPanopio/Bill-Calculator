@@ -3,12 +3,17 @@ import PropTypes from 'prop-types'
 
 import Friend from '../Friend'
 
-function FriendsList({ friends }) {
+function FriendsList({ friends, onSelect, selectedFriend }) {
   return (
     <>
       <List>
         {friends.map((friend) => (
-          <Friend friend={friend} key={friend.id} />
+          <Friend
+            friend={friend}
+            key={friend.id}
+            onSelect={onSelect}
+            selectedFriend={selectedFriend}
+          />
         ))}
       </List>
     </>
@@ -17,6 +22,8 @@ function FriendsList({ friends }) {
 
 FriendsList.propTypes = {
   friends: PropTypes.array,
+  onSelect: PropTypes.func,
+  selectedFriend: PropTypes.object,
 }
 
 export default FriendsList

@@ -3,12 +3,14 @@ import Avatar from '@mui/material/Avatar'
 import PropTypes from 'prop-types'
 import SharedButton from '../Button'
 
-function Friend({ friend }) {
-  function handleSelect(e) {
-    e.preventDefault()
-    alert('Please select a friend')
-    console.log('you selected a friend')
-  }
+function Friend({ friend, onSelect, selectedFriend }) {
+  // function handleSelect(e) {
+  //   e.preventDefault()
+  //   alert('Please select a friend')
+  //   console.log('you selected a friend')
+  // }
+
+  const isSelected = selectedFriend?.id === friend.id
 
   return (
     <div>
@@ -22,14 +24,22 @@ function Friend({ friend }) {
           sx={{ width: '150%' }}
           primary={friend.name}
           secondary={
-            friend.balance < 0
-              ? `You owe ${friend.name} $${Math.abs(friend.balance)}`
-              : friend.balance > 0
-              ? `${friend.name} owes you $${Math.abs(friend.balance)}`
-              : friend.balance === 0 && `You and ${friend.name} are even`
+            friend.balance < 0 ? (
+              <span style={{ color: '#FF004D' }}>
+                You owe {friend.name} ${Math.abs(friend.balance)}
+              </span>
+            ) : friend.balance > 0 ? (
+              <span style={{ color: '#99BC85' }}>
+                {friend.name} owes you ${Math.abs(friend.balance)}
+              </span>
+            ) : (
+              friend.balance === 0 && `You and ${friend.name} are even`
+            )
           }
         />
-        <SharedButton onClick={(e) => handleSelect(e)}>Select</SharedButton>
+        <SharedButton onClick={() => onSelect(friend)}>
+          {isSelected ? 'Close' : 'Select'}
+        </SharedButton>
       </ListItem>
     </div>
   )
@@ -37,6 +47,8 @@ function Friend({ friend }) {
 
 Friend.propTypes = {
   friend: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  selectedFriend: PropTypes.object,
 }
 
 export default Friend
