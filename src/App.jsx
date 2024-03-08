@@ -18,9 +18,14 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function App() {
   const [newFriend, setNewFriend] = useState(initialFriends)
+  const [showAddForm, setShowAddForm] = useState(false)
 
   function handleAddFriend(friend) {
     setNewFriend((newFriend) => [...newFriend, friend])
+  }
+
+  function handleShowAddForm() {
+    setShowAddForm((show) => !show)
   }
 
   return (
@@ -35,11 +40,15 @@ function App() {
         <Item>
           <FormSplitBill />
         </Item>
+        {showAddForm && (
+          <Item>
+            <FormAddFriend onAddFriend={handleAddFriend} />
+          </Item>
+        )}
         <Item>
-          <FormAddFriend onAddFriend={handleAddFriend} />
-        </Item>
-        <Item>
-          <SharedButton>Add New Friend</SharedButton>
+          <SharedButton onClick={handleShowAddForm}>
+            {showAddForm ? 'Close' : 'Add New Friend'}
+          </SharedButton>
         </Item>
       </Stack>
     </>
