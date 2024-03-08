@@ -1,11 +1,12 @@
-import { List } from '@mui/material'
-import Friend from '../Friend'
+import List from '@mui/material/List'
 import PropTypes from 'prop-types'
+
+import Friend from '../Friend'
 
 function FriendsList({ friends }) {
   return (
     <>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List>
         {friends.map((friend) => (
           <Friend friend={friend} key={friend.id} />
         ))}

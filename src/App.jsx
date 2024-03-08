@@ -1,11 +1,10 @@
+import { Paper, Stack } from '@mui/material'
 import './App.css'
-import FriendsList from './Components/FriendsList/index'
-import FormAddFriend from './Components/FormAddFriend/index'
-import FormSplitBill from './Components/FormSplitBill/index'
-import SharedButton from './Components/Button/index'
-import Paper from '@mui/material/Paper'
+import SharedButton from './Components/Button'
+import FormAddFriend from './Components/FormAddFriend'
+import FormSplitBill from './Components/FormSplitBill'
+import FriendsList from './Components/FriendsList'
 import { styled } from '@mui/material/styles'
-import { Stack } from '@mui/material'
 import { initialFriends } from './data'
 import { useState } from 'react'
 
@@ -18,24 +17,29 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 function App() {
-  const [friends, setFriends] = useState(initialFriends)
+  const [newFriend, setNewFriend] = useState(initialFriends)
 
   function handleAddFriend(friend) {
-    setFriends((friends) => [...friends, friend])
+    setNewFriend((newFriend) => [...newFriend, friend])
   }
 
   return (
     <>
-      <Stack direction={{ sm: 'column', md: 'row' }} spacing={2}>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={{ xs: 1, sm: 2, md: 4 }}
+      >
         <Item>
-          <FriendsList friends={friends} />
+          <FriendsList friends={newFriend} />
         </Item>
         <Item>
           <FormSplitBill />
         </Item>
         <Item>
           <FormAddFriend onAddFriend={handleAddFriend} />
-          <SharedButton>Add Friend</SharedButton>
+        </Item>
+        <Item>
+          <SharedButton>Add New Friend</SharedButton>
         </Item>
       </Stack>
     </>
