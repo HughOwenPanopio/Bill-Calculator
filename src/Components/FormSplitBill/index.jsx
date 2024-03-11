@@ -11,11 +11,29 @@ import {
 } from '@mui/material'
 import SharedButton from '../Button'
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 
-function FormSplitBill({ selectedFriend }) {
+function FormSplitBill({ selectedFriend, onSplitBill }) {
+  const [bill, setBill] = useState('')
+  const [myExpenses, setMyExpenses] = useState('')
+  const paidByFriend = bill ? bill - myExpenses : ''
+  const [paying, setPaying] = useState('user')
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    if (!bill || !myExpenses) return
+
+    onSplitBill(paying === 'user' ? paidByFriend : -myExpenses)
+
+    setBill('')
+    setMyExpenses('')
+    setPaying('user')
+  }
+
   return (
     <>
-      <form style={{ padding: 10 }}>
+      <form style={{ padding: 10 }} onSubmit={handleSubmit}>
         <Typography variant="h6">
           Split a bill with {selectedFriend.name}
         </Typography>
@@ -31,17 +49,28 @@ function FormSplitBill({ selectedFriend }) {
               id="outlined-basic"
               label="Bill Value"
               variant="outlined"
+              value={bill}
+              onChange={(e) => setBill(Number(e.target.value))}
             />
             <TextField
               id="outlined-basic"
               label="Your Expenses"
               variant="outlined"
+              value={myExpenses}
+              onChange={(e) =>
+                setMyExpenses(
+                  Number(e.target.value) > bill
+                    ? paidByFriend
+                    : Number(e.target.value)
+                )
+              }
             />
             <TextField
               id="outlined-basic"
               label={`${selectedFriend.name}'s Expenses`}
               variant="outlined"
               disabled
+              value={paidByFriend}
             />
 
             <FormControl sx={{ m: 1, width: 280 }}>
@@ -52,6 +81,8 @@ function FormSplitBill({ selectedFriend }) {
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
                 input={<OutlinedInput label="Who Will Pay The Bill?" />}
+                value={paying}
+                onChange={(e) => setPaying(e.target.value)}
               >
                 <MenuItem value="user">You</MenuItem>
                 <MenuItem value="friend">{selectedFriend.name}</MenuItem>
@@ -68,6 +99,7 @@ function FormSplitBill({ selectedFriend }) {
 
 FormSplitBill.propTypes = {
   selectedFriend: PropTypes.object,
+  onSplitBill: PropTypes.func,
 }
 
 export default FormSplitBill

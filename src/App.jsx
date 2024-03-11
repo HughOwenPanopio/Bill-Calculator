@@ -34,6 +34,19 @@ function App() {
     setShowAddForm(false)
   }
 
+  function handleSplitBill(value) {
+    console.log(value)
+
+    setNewFriend((newFriend) =>
+      newFriend.map((friend) =>
+        friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value }
+          : friend
+      )
+    )
+    setSelectedFriend(null)
+  }
+
   return (
     <>
       <Stack
@@ -50,7 +63,10 @@ function App() {
 
         {selectedFriend && (
           <Item>
-            <FormSplitBill selectedFriend={selectedFriend} />
+            <FormSplitBill
+              selectedFriend={selectedFriend}
+              onSplitBill={handleSplitBill}
+            />
           </Item>
         )}
 
