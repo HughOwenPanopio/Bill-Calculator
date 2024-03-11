@@ -4,12 +4,6 @@ import PropTypes from 'prop-types'
 import SharedButton from '../Button'
 
 function Friend({ friend, onSelect, selectedFriend }) {
-  // function handleSelect(e) {
-  //   e.preventDefault()
-  //   alert('Please select a friend')
-  //   console.log('you selected a friend')
-  // }
-
   const isSelected = selectedFriend?.id === friend.id
 
   return (
@@ -22,7 +16,7 @@ function Friend({ friend, onSelect, selectedFriend }) {
         </ListItemAvatar>
         <ListItemText
           sx={{ width: '150%' }}
-          primary={friend.name}
+          primary={<span style={{ fontWeight: 700 }}>{friend.name}</span>}
           secondary={
             friend.balance < 0 ? (
               <span style={{ color: '#FF004D' }}>
