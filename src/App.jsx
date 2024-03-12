@@ -47,6 +47,10 @@ function App() {
     setSelectedFriend(null)
   }
 
+  function handleDeleteFriend(id) {
+    setNewFriend((newFriend) => newFriend.filter((friend) => friend.id !== id))
+  }
+
   return (
     <>
       <Stack
@@ -58,6 +62,7 @@ function App() {
             friends={newFriend}
             onSelect={handleSelection}
             selectedFriend={selectedFriend}
+            onDelete={handleDeleteFriend}
           />
         </Item>
 

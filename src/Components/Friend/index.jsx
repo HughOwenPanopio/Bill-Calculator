@@ -2,8 +2,10 @@ import { ListItem, ListItemAvatar, ListItemText } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import PropTypes from 'prop-types'
 import SharedButton from '../Button'
+import IconButton from '@mui/material/IconButton'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-function Friend({ friend, onSelect, selectedFriend }) {
+function Friend({ friend, onSelect, selectedFriend, onDelete }) {
   const isSelected = selectedFriend?.id === friend.id
 
   return (
@@ -31,9 +33,14 @@ function Friend({ friend, onSelect, selectedFriend }) {
             )
           }
         />
+
         <SharedButton onClick={() => onSelect(friend)}>
           {isSelected ? 'Close' : 'Select'}
         </SharedButton>
+
+        <IconButton aria-label="delete" onClick={() => onDelete(friend.id)}>
+          <DeleteForeverIcon />
+        </IconButton>
       </ListItem>
     </div>
   )
@@ -43,6 +50,7 @@ Friend.propTypes = {
   friend: PropTypes.object.isRequired,
   onSelect: PropTypes.func.isRequired,
   selectedFriend: PropTypes.object,
+  onDelete: PropTypes.func.isRequired,
 }
 
 export default Friend

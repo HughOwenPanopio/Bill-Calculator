@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Friend from '../Friend'
 
-function FriendsList({ friends, onSelect, selectedFriend }) {
+function FriendsList({ friends, onSelect, selectedFriend, onDelete }) {
   return (
     <>
       <List>
@@ -13,6 +13,7 @@ function FriendsList({ friends, onSelect, selectedFriend }) {
             key={friend.id}
             onSelect={onSelect}
             selectedFriend={selectedFriend}
+            onDelete={onDelete}
           />
         ))}
       </List>
@@ -24,6 +25,7 @@ FriendsList.propTypes = {
   friends: PropTypes.array,
   onSelect: PropTypes.func,
   selectedFriend: PropTypes.object,
+  onDelete: PropTypes.func,
 }
 
 export default FriendsList

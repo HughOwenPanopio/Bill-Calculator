@@ -5,7 +5,12 @@ import { GenButton } from './style'
 function SharedButton({ children, onClick }) {
   return (
     <>
-      <GenButton variant="contained" onClick={onClick} type="submit">
+      <GenButton
+        variant="contained"
+        onClick={onClick}
+        type="submit"
+        width="width"
+      >
         {children}
       </GenButton>
     </>
