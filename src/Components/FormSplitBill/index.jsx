@@ -34,8 +34,8 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
   return (
     <>
       <form style={{ padding: 10 }} onSubmit={handleSubmit}>
-        <Typography variant="h6">
-          Split a bill with {selectedFriend.name}
+        <Typography variant="h6" style={{ fontWeight: 700 }}>
+          Split The Bill With {selectedFriend.name}
         </Typography>
         <Box
           sx={{
@@ -75,12 +75,12 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
 
             <FormControl sx={{ m: 1, width: 280 }}>
               <InputLabel id="demo-multiple-name-label">
-                Who will Pay The Bill?
+                Who&apos;s Paying The Bill?
               </InputLabel>
               <Select
                 labelId="demo-multiple-name-label"
                 id="demo-multiple-name"
-                input={<OutlinedInput label="Who Will Pay The Bill?" />}
+                input={<OutlinedInput label="Who's Paying The Bill?" />}
                 value={paying}
                 onChange={(e) => setPaying(e.target.value)}
               >
