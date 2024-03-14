@@ -19,6 +19,7 @@ function FormSplitBill({ selectedFriend, onSplitBill }) {
   const paidByFriend = bill ? bill - myExpenses : ''
   const [paying, setPaying] = useState('user')
 
+  //*! This is the function to submit the form by splitting the bill with friend. preventDefault is to prevent the behavior of the form. "if (!bill || !myExpenses) return" is to prevent the form for submitting with emplty values. onSplitBill is the function to calculate the split bill, useState is located on the App.jsx. "setBill, setMyExpenses, setPaying" is to reset the textfields into current state
   function handleSubmit(e) {
     e.preventDefault()
 

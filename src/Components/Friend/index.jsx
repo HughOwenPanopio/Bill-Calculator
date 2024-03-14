@@ -3,8 +3,9 @@ import Avatar from '@mui/material/Avatar'
 import PropTypes from 'prop-types'
 import SharedButton from '../Button'
 import IconButton from '@mui/material/IconButton'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
+//* isSelected is to identify if the selected id is equal to friend id
 function Friend({ friend, onSelect, selectedFriend, onDelete }) {
   const isSelected = selectedFriend?.id === friend.id
 

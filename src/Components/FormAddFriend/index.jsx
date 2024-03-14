@@ -9,8 +9,10 @@ function FormAddFriend({ onAddFriend }) {
   const [name, setName] = useState('')
   const [image, setImage] = useState('https://i.pravatar.cc/48')
 
+  //*! crypto.randomUUID() is to generate a unique id
   const id = crypto.randomUUID()
 
+  //*! This function is to add a friend using the form when submitted. preventDefault is to prevent the behaviour of the form. "if (!name || !image) return" is to prevent the form from submitting when the textfield is empty. newFriend is the object that will be added to the data. onAddFriend is the function to add friend to the array, useState is located on App.jsx. "setName('') and setIamge('https://i.pravatar.cc/48')" is to reset the textfield based on the current state.
   function handleSubmit(e) {
     e.preventDefault()
 

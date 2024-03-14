@@ -21,19 +21,23 @@ function App() {
   const [showAddForm, setShowAddForm] = useState(false)
   const [selectedFriend, setSelectedFriend] = useState(null)
 
+  //*! This is the function to add a new friend on the data.js, friend is the parameter that needs ti be updated, it is the new added object in the array. this function is proped in the FormAddFriend, the new object is proped in the FriendsList and passed down to Friend component.
   function handleAddFriend(friend) {
     setNewFriend((newFriend) => [...newFriend, friend])
   }
 
+  //*! This function is to hide and show the FormAddFriend. opposite value from default value based on the current state. function is called on the SharedButton.
   function handleShowAddForm() {
     setShowAddForm((show) => !show)
   }
 
+  //*! This function is to select a friend and the FormSplitBill will appear based on the selected friend.
   function handleSelection(friend) {
     setSelectedFriend((cur) => (cur?.id === friend.id ? null : friend))
     setShowAddForm(false)
   }
 
+  //*! This is the logic for splitting the bill, targeting the balance value of the object.
   function handleSplitBill(value) {
     console.log(value)
 
@@ -47,6 +51,7 @@ function App() {
     setSelectedFriend(null)
   }
 
+  //*! This function is to delete a friend on the list
   function handleDeleteFriend(id) {
     setNewFriend((newFriend) => newFriend.filter((friend) => friend.id !== id))
   }
